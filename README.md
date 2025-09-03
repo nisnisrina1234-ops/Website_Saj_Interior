@@ -1,2 +1,320 @@
-# Website_Saj_Interior
-Web
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAJ Interior - Solusi Interior Terbaik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #25d366;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            background-color: #1ebe57;
+        }
+        @media (max-width: 768px) {
+            .hero-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header Navigation -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-amber-600">SAJ Interior</h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="showPage('home')" class="text-gray-700 hover:text-amber-600 transition-colors">Beranda</button>
+                    <button onclick="showPage('about')" class="text-gray-700 hover:text-amber-600 transition-colors">Tentang Kami</button>
+                    <button onclick="showPage('catalog')" class="text-gray-700 hover:text-amber-600 transition-colors">Katalog Produk</button>
+                    <button onclick="showPage('featured')" class="text-gray-700 hover:text-amber-600 transition-colors">Produk Unggulan</button>
+                    <button onclick="showPage('contact')" class="text-gray-700 hover:text-amber-600 transition-colors">Kontak</button>
+                    <button onclick="showPage('maps')" class="text-gray-700 hover:text-amber-600 transition-colors">Maps</button>
+                    <div class="relative">
+                        <button onclick="showPage('cart')" class="text-gray-700 hover:text-amber-600 transition-colors">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cartBadge" class="cart-count">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="md:hidden text-gray-700"><i class="fas fa-bars text-2xl"></i></button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <button onclick="showPage('home')" class="block w-full text-left py-2 px-4 text-gray-700 hover:bg-amber-50 rounded">Beranda</button>
+                <button onclick="showPage('about')" class="block w-full text-left py-2 px-4 text-gray-700 hover:bg-amber-50 rounded">Tentang Kami</button>
+                <button onclick="showPage('catalog')" class="block w-full text-left py-2 px-4 text-gray-700 hover:bg-amber-50 rounded">Katalog Produk</button>
+                <button onclick="showPage('featured')" class="block w-full py-2 px-4 text-gray-700 hover:bg-amber-50 rounded">Produk Unggulan</button>
+                <button onclick="showPage('contact')" class="block w-full text-left py-2 px-4 text-gray-700 hover:bg-amber-50 rounded">Kontak</button>
+                <button onclick="showPage('maps')" class="block w-full py-2 px-4 text-gray-700 hover:bg-amber-50 rounded">Maps</button>
+                <button onclick="showPage('cart')" class="block w-full text-left py-2 px-4 text-gray-700 hover:bg-amber-50 rounded">
+                    Keranjang <span id="mobileCartBadge" class="bg-amber-600 text-white px-2 py-1 rounded-full text-sm ml-2">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Beranda -->
+        <section id="home" class="page active">
+            <div class="bg-gradient-to-r from-amber-50 to-orange-100 rounded-2xl p-8 mb-12">
+                <div class="hero-section grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Bikin Rumah Nyaman dengan SAJ Interior</h2>
+                        <p class="text-lg text-gray-600 mb-6">Solusi interior terbaik untuk rumah dan kantor modern dengan desain inovatif.</p>
+                        <button onclick="showPage('catalog')" class="bg-amber-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-amber-700 transition-colors">Lihat Katalog</button>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cc7d0517-ac2d-486c-80fa-48e412d30296.png" alt="Modern living room with spacious sofa, wooden coffee table, large windows overlooking city skyline, and contemporary wall decor in warm lighting." />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tentang Kami -->
+        <section id="about" class="page">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Tentang Kami</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/81a9e44f-6f5c-4ce9-b37e-978b5b415bec.png" alt="Interior design team collaborating in a modern showroom with blueprints, fabric samples, design software on laptops, and furniture prototypes." />
+                    <div>
+                        <p class="text-gray-700 mb-6">SAJ Interior adalah perusahaan desain interior terkemuka yang fokus pada menciptakan ruang hidup yang estetis dan fungsional. Dengan tim profesional berpengalaman, kami hadir untuk mewujudkan visi Anda.</p>
+                        <h3 class="text-2xl font-semibold mb-4">Visi & Misi</h3>
+                        <p class="text-gray-700">Visi: Menjadi pemimpin dalam industri interior dengan inovasi berkelanjutan. Misi: Memberikan pelayanan terbaik dan produk berkualitas untuk kepuasan klien.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Katalog Produk -->
+        <section id="catalog" class="page">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Katalog Produk</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3f02616d-ffbb-4d58-8796-7a4d6ba8024f.png" alt="Elegant wooden dining table set with upholstered chairs in a bright contemporary dining space with chandelier lighting." />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-lg mb-2">Meja Makan Modern</h4>
+                        <p class="text-gray-600 mb-4">Desain elegan dengan bahan kayu berkualitas.</p>
+                        <button onclick="addToCart('Meja Makan Modern', 4500000)" class="w-full bg-amber-600 text-white py-2 rounded-lg hover:bg-amber-700">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1928266d-1036-434c-b493-7f1d8787ec6e.png" alt="Cozy gray fabric sofa with plush cushions and wooden legs in a nicely lit living room with plants and magazines." />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-lg mb-2">Sofa Lounge</h4>
+                        <p class="text-gray-600 mb-4">Sofa nyaman untuk ruang tamu minimalis.</p>
+                        <button onclick="addToCart('Sofa Lounge', 3200000)" class="w-full bg-amber-600 text-white py-2 rounded-lg hover:bg-amber-700">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/dffda21c-fd22-4f7e-a756-142b265d7d12.png" alt="Stylish wardrobe with mirrored doors and storage drawers in a bedroom with soft bedding and curtains." />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-lg mb-2">Lemari Pakaian</h4>
+                        <p class="text-gray-600 mb-4">Lemari elegan dengan desain modern.</p>
+                        <button onclick="addToCart('Lemari Pakaian', 2800000)" class="w-full bg-amber-600 text-white py-2 rounded-lg hover:bg-amber-700">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Produk Unggulan -->
+        <section id="featured" class="page">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Produk Unggulan</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9b4d60bf-9b89-4598-8187-553e04aef9ad.png" alt="Luxurious bedroom suite with king-size bed, velvet headboard, chandelier, and large windows with city view and soft natural light." />
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Kamar Tidur Mewah</h3>
+                    <p class="text-gray-700 mb-6">Suite kamar tidur lengkap dengan desain premium dan material berkualitas tinggi untuk kenyamanan maksimal.</p>
+                    <button onclick="addToCart('Kamar Tidur Mewah', 8500000)" class="bg-amber-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-amber-700">Pesan Sekarang</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontak -->
+        <section id="contact" class="page">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Kontak Kami</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <form>
+                    <div class="mb-4"><input type="text" placeholder="Nama" class="w-full p-3 border rounded"></div>
+                    <div class="mb-4"><input type="email" placeholder="Email" class="w-full p-3 border rounded"></div>
+                    <div class="mb-4"><textarea placeholder="Pesan" rows="5" class="w-full p-3 border rounded"></textarea></div>
+                    <button type="submit" class="bg-amber-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-amber-700">Kirim Pesan</button>
+                </form>
+                <div>
+                    <p class="text-gray-700 mb-4"><i class="fas fa-phone mr-2"></i> 08970688409</p>
+                    <p class="text-gray-700 mb-4"><i class="fas fa-envelope mr-2"></i> sajinteriorconstruction@gmail.com</p>
+                    <p class="text-gray-700 mb-4"><i class="fas fa-map-marker-alt mr-2"></i> Jl. Bareng, Barengpulo, Hadipolo, Kec. Jekulo, Kabupaten Kudus, Jawa Tengah 59382</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Maps -->
+        <section id="maps" class="page">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Lokasi Kami</h2>
+            <div class="bg-gray-200 h-64 rounded-2xl flex items-center justify-center">
+                <p class="text-gray-600">Peta lokasi SAJ Interior - Jl. Bareng, Barengpulo, Hadipolo, Kec. Jekulo, Kabupaten Kudus, Jawa Tengah 59382</p>
+            </div>
+            <div class="mt-8">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8935628963824!2d110.90189257585029!3d-6.797102768730307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70cf4447624213%3A0x50dccf071f4295c1!2sInterior%20SAJ%20jateng!5e0!3m2!1sid!2sid!4v1711100694401!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Keranjang -->
+        <section id="cart" class="page">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Keranjang Belanja</h2>
+            <div id="cartItems" class="space-y-4">
+                <p class="text-gray-600 text-center">Belum ada item di keranjang.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2024 SAJ Interior. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/6281234567890?text=Halo, saya tertarik dengan SAJ Interior!" class="whatsapp-float" target="_blank" aria-label="Hubungi via WhatsApp">
+        <i class="fab fa-whatsapp text-white text-xl"></i>
+    </a>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let currentPage = 'home';
+
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(p => {
+                p.classList.remove('active');
+                p.style.display = 'none';
+            });
+            document.getElementById(pageName).classList.add('active');
+            document.getElementById(pageName).style.display = 'block';
+            currentPage = pageName;
+            toggleMobileMenu(false);
+            updateCartDisplay();
+        }
+
+        function toggleMobileMenu(show) {
+            const menu = document.getElementById('mobileMenu');
+            if (show) menu.classList.remove('hidden');
+            else menu.classList.add('hidden');
+        }
+
+        document.getElementById('mobileMenuButton').addEventListener('click', () => toggleMobileMenu(true));
+        document.querySelectorAll('#mobileMenu button').forEach(btn => btn.addEventListener('click', () => toggleMobileMenu(false)));
+
+        function addToCart(name, price) {
+            cart.push({ name, price, qty: 1 });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification(`${name} ditambahkan ke keranjang!`);
+            if (currentPage === 'cart') updateCartDisplay();
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartBadge').textContent = count;
+            document.getElementById('mobileCartBadge').textContent = count;
+        }
+
+        function updateCartDisplay() {
+            const cartDiv = document.getElementById('cartItems');
+            cartDiv.innerHTML = '';
+            if (cart.length === 0) {
+                cartDiv.innerHTML = '<p class="text-gray-600 text-center">Belum ada item di keranjang.</p>';
+            } else {
+                cart.forEach((item, idx) => {
+                    cartDiv.innerHTML += `
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h4>${item.name}</h4>
+                            <p>Rp ${item.price.toLocaleString()}</p>
+                            <p>Qty: ${item.qty}</p>
+                            <button onclick="removeFromCart(${idx})" class="text-red-600 mt-2">Hapus</button>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        function removeFromCart(idx) {
+            cart.splice(idx, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        function showNotification(msg) {
+            const notif = document.createElement('div');
+            notif.className = 'fixed top-20 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            notif.textContent = msg;
+            document.body.appendChild(notif);
+            setTimeout(() => document.body.removeChild(notif), 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>
+</content>
+</create_file>
